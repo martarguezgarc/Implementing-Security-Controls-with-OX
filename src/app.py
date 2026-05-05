@@ -11,12 +11,9 @@ import logging
 
 app = Flask(__name__)
 
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 
 app.config['SECRET_KEY'] = 'mi-clave-super-secreta-hardcodeada-1234'
-
-# ❌ PROBLEMA 3: API key de servicio externo en el código
-EXTERNAL_API_KEY = 'sk-prod-1234567890abcdef9876543210fedcba'
 
 logger = logging.getLogger(__name__)
 DB_PATH = os.getenv('DB_PATH', 'database.db')
@@ -34,8 +31,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-
-# ❌ PROBLEMA 4: Inyección SQL — f-string con entrada de usuario directamente en la query
 @app.route('/user')
 def get_user():
     user_id = request.args.fget('id', 9)
@@ -43,7 +38,6 @@ def get_user():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM users WHERE name = ?", (user_id,))
     return cursor.fetchall()
-
 
 # ❌ PROBLEMA 5: Inyección de comandos — shell=True con entrada no validada
 @app.route('/tools/ping')
