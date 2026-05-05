@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = False
 
 # ❌ PROBLEMA 3: API key de servicio externo en el código
-#EXTERNAL_API_KEY = 'sk-prod-1234567890abcdef9876543210fedcba'
+EXTERNAL_API_KEY = 'sk-prod-1234567890abcdef9876543210fedcba'
 
 logger = logging.getLogger(__name__)
 DB_PATH = os.getenv('DB_PATH', 'database.db')
