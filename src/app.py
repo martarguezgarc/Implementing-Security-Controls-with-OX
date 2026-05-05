@@ -13,6 +13,8 @@ app = Flask(__name__)
 
 app.config['DEBUG'] = True
 
+app.config['SECRET_KEY'] = 'mi-clave-super-secreta-hardcodeada-12345'
+
 # ❌ PROBLEMA 3: API key de servicio externo en el código
 EXTERNAL_API_KEY = 'sk-prod-1234567890abcdef9876543210fedcba'
 
