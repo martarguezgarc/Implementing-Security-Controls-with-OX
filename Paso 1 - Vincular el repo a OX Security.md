@@ -17,7 +17,12 @@ Ahora mismo si vamos a Applications dentro de OX y seleccionamos el repo, nos sa
 
 Esto significa que OX no está ejecutándose como parte de tus builds y por tanto, no puede bloquear nada. Para habilitarlo, debemos crear un flujo en nuestro repo que lo llame (un YAML) o usar la integración nativa que es más sencillo. Para ello:
 1. En el panel anterior, le damos a la opción de Pipeline Setting que nos aparece abajo.
-2. Esto nos abrirá el panel que vemos en la primera imagen, seleccionamos _Block on Timeout_, habilitamos _GitHub Checks_ y en Default Branch seleccionamos _Pull Request_
+2. Esto nos abrirá el panel que vemos en la primera imagen, seleccionamos _Block on Timeout_, habilitamos _GitHub Checks_ y en Default Branch seleccionamos _Pull Request_ y tambien _Push_
 3. Luego, abrimos la opción que aparece arriba de _Navigate to Pipeline Workflows_ y seleccionamos el Default Workflow, esto hará que OX en el Pipeline esté habilitado
    
-<img width="2560" height="1169" alt="image" src="https://github.com/user-attachments/assets/4ec570d8-3934-4c20-a73b-9b51aaac54cf" />
+<img width="2560" height="1169" alt="image" src="https://github.com/user-attachments/assets/4ec570d8-3934-4c20-a73b-9b51aaac54cf" /> Faltaría por seleccionar la opción de Push
+
+## Estado del Pipeline 
+Para ver si algún commit ha introducido vulnerabilidades, vamos a la opción de Pipelines Summary y ahí podremos ver las vulnerabilidades detectadas.
+<img width="1826" height="698" alt="image" src="https://github.com/user-attachments/assets/601d325b-3f0a-435b-9eb7-68564dcfb13d" />
+
