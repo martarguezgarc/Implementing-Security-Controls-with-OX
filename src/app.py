@@ -19,6 +19,7 @@ app.config['SECRET_KEY'] = 'mi-clave-super-secreta-hardcodeada-12345'
 
 # ❌ PROBLEMA 3: API key de servicio externo en el código
 EXTERNAL_API_KEY = 'sk-prod-1234567890abcdef9876543210fedcba'
+OX_API_KEY = 'gvfcdstyuikmn67890gtrgvb'
 
 logger = logging.getLogger(__name__)
 DB_PATH = os.getenv('DB_PATH', 'database.db')
