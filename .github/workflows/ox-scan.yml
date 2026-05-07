@@ -1,0 +1,46 @@
+name: OX Security Scan
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  ox-security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Instalar CLI de OX
+        run: |
+          curl -sSL https://cli.ox.security/install.sh | bash
+
+      - name: Ejecutar escaneo OX
+        run: |
+          ox scan \
+            --fail-on-severity high \
+            --output json > result.json
+
+      - name: Evaluar resultado
+        run: |
+            HIGH_CRITICAL=$(jq '[.vulnerabilities[] | select(.severity=="HIGH" or .severity=="CRITICAL")] | length' result.json)
+            MEDIUM_COUNT=$(jq '[.vulnerabilities[] | select(.severity=="MEDIUM")] | length' result.json)
+        
+            echo "High/Critical: $HIGH_CRITICAL"
+            echo "Medium: $MEDIUM_COUNT"
+        
+            if [ "$HIGH_CRITICAL" -gt 0 ]; then
+              echo "❌ Vulnerabilidades High/Critical detectadas"
+              exit 1
+            fi
+        
+            if [ "$MEDIUM_COUNT" -gt 5 ]; then
+              echo "❌ Más de 5 vulnerabilidades MEDIUM detectadas"
+              exit 1
+            fi
+            echo "✅ Sin vulnerabilidades bloqueantes"
