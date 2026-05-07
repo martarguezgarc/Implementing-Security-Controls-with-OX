@@ -20,9 +20,17 @@ jobs:
         run: |
           curl -sSL https://cli.ox.security/install.sh | bash
 
+      - name: Localizar binario
+        run: |
+          find $HOME -name ox-cli 2>/dev/null || true
+      
       - name: Agregar al PATH
         run: |
-          echo "$HOME/.local/bin" >> $GITHUB_PATH \
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      
+      - name: Verificar CLI
+        run: |
+          which ox-cli
           ox-cli --version
 
       - name: Ejecutar escaneo OX
