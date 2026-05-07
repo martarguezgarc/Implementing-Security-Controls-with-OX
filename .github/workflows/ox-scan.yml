@@ -22,9 +22,10 @@ jobs:
 
       - name: Ejecutar escaneo OX
         run: |
-          ox scan \
+          ox-scan \
             --fail-on-severity high \
-            --output json > result.json
+            --format json \
+            --output result.json
 
       - name: Evaluar resultado
         run: |
