@@ -20,12 +20,14 @@ jobs:
         run: |
           curl -sSL https://cli.ox.security/install.sh | bash
 
+      - name: Agregar al PATH
+        run: |
+          echo "$HOME/.local/bin" >> $GITHUB_PATH \
+          ox-cli --version
+
       - name: Ejecutar escaneo OX
         run: |
-          ox-scan \
-            --fail-on-severity high \
-            --format json \
-            --output result.json
+          ox-cli scan --fail-on-severity high --format json --output result.json
 
       - name: Evaluar resultado
         run: |
