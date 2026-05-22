@@ -1,0 +1,5 @@
+{
+  "extends": ["config:base"],
+  "automerge": false,
+  "schedule": ["after 10pm and before 5am"]
+}
