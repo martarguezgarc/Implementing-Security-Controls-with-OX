@@ -1,15 +1,24 @@
 name: Renovate
 
 on:
-  schedule:
-    - cron: "0 0 * * *"  # cada día a las 00:00 UTC --> 02:00 de la madrugada en España
   workflow_dispatch: 
 
 jobs:
   renovate:
+    name: Run Renovate
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    env:
+      LOG_LEVEL: debug
+      RENOVATE_AUTODISCOVER: true
+      
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run Renovate
