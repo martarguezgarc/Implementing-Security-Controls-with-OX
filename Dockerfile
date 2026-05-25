@@ -2,7 +2,7 @@
 # Este fichero tiene 4 problemas de seguridad que deberás corregir en el Paso 4.
 
 # ❌ PROBLEMA 1: Imagen base con CVEs conocidos (EOL desde abril 2023)
-FROM ubuntu:18.04
+FROM ubuntu:26.04
 
 # Instalar dependencias del sistema
 RUN apt-get update && \
